@@ -12,7 +12,6 @@ colors = {0:(0,0,0), 1:(255,255,255), 2:(255, 0,0), 3:(0,255,0), 4:(0,0,255), 5:
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 screen_matrix = numpy.ones((WIDTH, HEIGHT), dtype=numpy.uint8)
 player_position = numpy.array((2,2), dtype=numpy.int8)
-player_position_previous = player_position
 screen_matrix[player_position[0], player_position[1]] = 3
 clock = pygame.time.Clock()
 
