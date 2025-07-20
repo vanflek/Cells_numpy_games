@@ -16,6 +16,8 @@ player_velocity = numpy.array((0,1), dtype=numpy.int8)
 screen_matrix[player_position[0], player_position[1]] = 3
 clock = pygame.time.Clock()
 t = 0
+t_divider = 10
+key_permission = True
 run = True
 while run:
 
@@ -23,7 +25,7 @@ while run:
         if event.type == pygame.QUIT:
             run = False
         #control
-        elif event.type == pygame.KEYDOWN:
+        elif event.type == pygame.KEYDOWN and key_permission:
             if event.key == pygame.K_UP:
                 player_velocity[0] = -1
                 player_velocity[1] = 0
@@ -36,10 +38,12 @@ while run:
             if event.key == pygame.K_RIGHT:
                 player_velocity[1] = 1
                 player_velocity[0] = 0
+            key_permission = False
 
-
-    t += 1 if t < 59 else - 59
-    if t == 30:
+    #turn
+    t += 1 if t < FPS-1 else - (FPS-1)
+    if t%t_divider == 0:
+        key_permission = True
         screen_matrix[player_position[0], player_position[1]] = 1
         player_position += player_velocity
         player_position %= (TILE_Y, TILE_X)
