@@ -37,7 +37,7 @@ while run:
                 screen_matrix[player_position_previous[0],player_position_previous[1]] = 1
             else:
                 player_position = player_position_previous
-            print(player_position)
+
     #drawing
     for y in range(TILE_Y):
         for x in range(TILE_X):
