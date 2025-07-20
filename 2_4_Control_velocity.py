@@ -26,16 +26,16 @@ while run:
             run = False
         #control
         elif event.type == pygame.KEYDOWN and key_permission:
-            if event.key == pygame.K_UP:
+            if event.key == pygame.K_UP and player_velocity[1]:
                 player_velocity[0] = -1
                 player_velocity[1] = 0
-            if event.key == pygame.K_DOWN:
+            if event.key == pygame.K_DOWN and player_velocity[1]:
                 player_velocity[0] = 1
                 player_velocity[1] = 0
-            if event.key == pygame.K_LEFT:
+            if event.key == pygame.K_LEFT and player_velocity[0]:
                 player_velocity[1] = -1
                 player_velocity[0] = 0
-            if event.key == pygame.K_RIGHT:
+            if event.key == pygame.K_RIGHT and player_velocity[0]:
                 player_velocity[1] = 1
                 player_velocity[0] = 0
             key_permission = False
