@@ -22,10 +22,33 @@ while run:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_r:
                 cells_possible = []
-                for y in range(1, TILE_Y-1):
-                    for x in range(1, TILE_X-1):
-                        if screen_matrix[y][x] == 2:
-                            screen_matrix[y][x] = 0
+
+                screen_matrix[screen_matrix==2] = 0
+
+                #corners checking
+                if sum(screen_matrix[0,0:2]==1) + sum(screen_matrix[0:2,0]==1) == 1:
+                    cells_possible.append([0, 0])
+                if sum(screen_matrix[0,TILE_X-2:TILE_X]==1) + sum(screen_matrix[0:2,TILE_X-1]==1) == 1:
+                    cells_possible.append([0, TILE_X-1])
+                if sum(screen_matrix[TILE_Y-1, 0:2] == 1) + sum(screen_matrix[TILE_Y-2:TILE_Y, 0] == 1) == 1:
+                    cells_possible.append([TILE_Y-1, 0])
+                if sum(screen_matrix[TILE_Y-1, TILE_X - 2:TILE_X] == 1) + sum(screen_matrix[TILE_Y-2:TILE_Y, TILE_X - 1] == 1) == 1:
+                    cells_possible.append([TILE_Y-1, TILE_X - 1])
+
+                #ribers cheking
+                for x in range(1,TILE_X-1):
+                    if sum(screen_matrix[0, x-1:x+2] == 1) + sum(screen_matrix[0:2, x] == 1) == 1:
+                        cells_possible.append([0, x])
+                for x in range(1,TILE_X-1):
+                    if sum(screen_matrix[TILE_Y-1, x-1:x+2] == 1) + sum(screen_matrix[TILE_Y-2:TILE_Y, x] == 1) == 1:
+                        cells_possible.append([TILE_Y-1, x])
+                for y in range(1,TILE_Y-1):
+                    if sum(screen_matrix[y, 0:2] == 1) + sum(screen_matrix[y-1:y+2, 0] == 1) == 1:
+                        cells_possible.append([y, 0])
+                for y in range(1,TILE_Y-1):
+                    if sum(screen_matrix[y, TILE_X-2:TILE_X] == 1) + sum(screen_matrix[y-1:y+2, TILE_X-1] == 1) == 1:
+                        cells_possible.append([y, TILE_X-1])
+
                 for y in range(1, TILE_Y-1):
                     for x in range(1, TILE_X-1):
                         if sum(screen_matrix[y-1:y+2,x]==1) + sum(screen_matrix[y,x-1:x+2]==1) == 1:
