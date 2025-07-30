@@ -1,8 +1,6 @@
 import pygame
 import numpy
 
-
-
 pygame.init()
 
 TILE_SIZE = 32
@@ -37,6 +35,7 @@ while run:
                       (pygame.mouse.get_pos()[1]//TILE_SIZE)*TILE_SIZE, TILE_SIZE, TILE_SIZE), 2)
     pygame.display.update()
     mouse_position[:] = pygame.mouse.get_pos()[1]//TILE_SIZE, pygame.mouse.get_pos()[0]//TILE_SIZE
+    pygame.display.set_caption(str(mouse_position) + str(pygame.mouse.get_pos()))
     pygame.display.update()
     clock.tick(FPS)
 pygame.quit()
